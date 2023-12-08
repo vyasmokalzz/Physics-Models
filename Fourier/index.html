@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+
+    <!-- LaTEX Imports -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript"
+      src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+  </head>
+
+  <body>
+    <h1 id="head">
+      Fourier Series
+    </h1>
+    <div class="slider">
+      <label for="sliderValue" class="text">Number of Terms:</label>
+      <input type="text" name="sliderValue" id="sliderValue" readonly>
+      <input type="range" name="" id="slider" min="1" max="100" value="0">
+
+      <select name="" id="select" class="" onchange="examples()">
+        <option value="1">Square Wave</option>
+        <option value="2">Saw Wave</option>
+      </select>
+    </div>
+    
+    <div class="math" id="squareWave">
+        $
+        f(x)=
+        \begin{cases} 
+          -1 & for \ \ 0 < t < \frac{T}{2} \\
+          \\
+          1 & for \ \ \frac{T}{2} < t < T
+          \end{cases}
+        $
+    </div>
+    
+    <div class="math" id="sawWave">
+        $
+        f(x)= x \ \ \ \ for  \ -\frac{T}{2} < t < \frac{T}{2} 
+        $
+    </div>
+
+    <div id="sketch">
+      <script src="sketch.js"></script>
+    </div>
+
+
+    </body>
+</html>

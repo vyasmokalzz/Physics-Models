@@ -1,0 +1,42 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+  border-radius: 10px;
+}
+
+body{
+  background-color: rgb(16, 16, 16);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+div{
+  margin: 8px;
+}
+
+#head{
+  color: white;
+}
+
+.slider{
+  margin: 0.5rem;
+}
+
+#sliderValue{
+  width: 1.5rem;
+  border-radius: 5px;
+}
+
+.text, .math{
+  color: white;
+  font-weight: 100;
+}
+
+input, #select:focus{
+  outline: none;
+}
