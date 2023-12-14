@@ -1,24 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sketch</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Sketch</title>
 
-    <script src="path/to/p5.sound.js"></script>
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
-    <script src="libraries/global.js"></script>
-    <script src="libraries/orbit.js"></script>
-    <script src="libraries/drawing.js"></script>
-    <script src="libraries/field.js"></script>
-  </head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script src="path/to/p5.sound.js"></script>
+  <script src="libraries/p5.min.js"></script>
+  <script src="libraries/p5.sound.min.js"></script>
+  <script src="libraries/orbit.js"></script>
+  <script src="libraries/drawing.js"></script>
+  <script src="libraries/parser.js"></script>
+  <script src="libraries/global.js"></script>
+</head>
+
+<body>
+  <script src="sketch.js"></script>
   
-  <body>
-    <script src="sketch.js"></script>
-    <!-- <script src="test.js"></script> -->
-  </body>
+  <!-- Controls -->
+  <div id="controls">
+    <!-- Include a header DIV, followed by "header" -->
+    <div id="controlsheader">
+      <button id="minbutton" onclick="minimize()"></button>
+    </div>
+    <div id="panel">
+      <!-- X component input -->
+      <label for="funcx">
+        X: <input type="text" name="funcx" id="funcx" class="inputbox" onfocusout="getFieldX()" value="sin(x)">
+      </label>
+
+      <!-- Y component input -->
+      <label for="funcy">
+        Y: <input type="text" name="funcy" id="funcy" class="inputbox" onfocusout="getFieldY()" value="sin(y)">
+      </label>
+
+      <!-- Z component input -->
+      <label for="funcz">
+        Z: <input type="text" name="funcz" id="funcz" class="inputbox" onfocusout="getFieldZ()" value="0">
+      </label>
+
+      <!-- 2D or 3D Plot Selector -->
+      <label for="dim">
+        2d: <input type="radio" name="dim" id="2d" checked>
+        3d: <input type="radio" name="dim" id="3d">
+      </label>
+
+      <label for="scale">
+        Scale:
+        <input type="text" name="scaleValue" id="scaleValue" value="5" readonly>
+        <input type="range" name="scale" id="scale" min="1" max="100" value="5" onchange="scl(this.value)">
+      </label>
+    </div>
+  </div>
+  <script src="libraries/controls.js"></script>
+</body>
+
 </html>

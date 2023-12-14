@@ -57,3 +57,10 @@ function mouseWheel(event) {
         zoom = PI - 1/zoomSensitivity; 
     }
 }
+
+//additional functionality to restore the orientations when control panel is being dragged
+function restoreOrientation(){
+    perspective(zoom, width / height, 1, 1000);
+    rotateX(rotX);
+    rotateZ(rotZ);
+}

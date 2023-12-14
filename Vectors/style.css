@@ -6,3 +6,47 @@ html, body {
 canvas {
   display: block;
 }
+
+.box{
+  display: flex;
+  flex-direction: row;
+}
+
+#controls {
+  position: absolute;
+  z-index: 9;
+  background-color: rgb(206, 205, 205);
+  text-align: center;
+  width: 20vw;
+  border: 1px solid rgb(107, 107, 107);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#controlsheader {
+  border-radius: 8px;
+  padding: 2px;
+  cursor: move;
+  z-index: 10;
+  background-color: #181818;
+}
+
+#panel{
+  border-radius: 8px;
+  background-color: rgb(206, 205, 205);
+  display: flex;
+  flex-direction: column;
+}
+
+#minbutton{
+  border: none;
+  border-radius: 10px;
+  width: 28px;
+  height: 8px;
+}
+
+#minbutton:hover{
+  cursor: pointer;
+  background-color: #cccccc;
+}
