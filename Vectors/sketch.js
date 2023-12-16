@@ -1,16 +1,17 @@
-let vec = Create2DArray(500);
+if(!is3d)
+  vec = Create2DArray(n);
+else
+  ; 
 let x=-limit/2,y=-limit/2,z=0;
-// let x=-50,y=-50,z=0;
-let n = 20;
 
 function setup() {
   createCanvas(width, height, WEBGL);
   for(let i=0;i<n;i++){
     for(let j=0; j<n; j++){
       vec[i][j] = new Arrow(x,y,z);
-      y += limit/20;
+      y += limit/n;
     }
-    x += limit/20;
+    x += limit/n;
     y = -limit/2;
   }
 }
@@ -22,16 +23,20 @@ function draw() {
   stroke(255);
   noFill();
 
-  if(!isControlPanelClicked)
+  if(!isControlPanelClicked){
     orbit();  // Gives control over orbit
-  else
+  }
+  else{
+    // console.log("T");
     restoreOrientation();
-  
+    limit = document.getElementById("scale").value
+    document.getElementById("scaleValue").value = limit;
+    scl();
+  }
+
   drawAxes();
   stroke(255);
   box(boxSize);
-
-  // getField();
 
   for(let i=0;i<n;i++){
     for(let j=0; j<n; j++){
@@ -43,11 +48,15 @@ function draw() {
 }
 
 function Create2DArray(rows) {
-  var arr = [];
+  let arr = [];
 
   for (var i=0;i<rows;i++) {
      arr[i] = [];
   }
 
   return arr;
+}
+
+function create3DArray(rows,cols){
+
 }

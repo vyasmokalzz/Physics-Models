@@ -50,3 +50,9 @@ canvas {
   cursor: pointer;
   background-color: #cccccc;
 }
+
+#error{
+  display: block;
+  color: red;
+  font-weight: 100;
+}

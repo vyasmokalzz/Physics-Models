@@ -1,6 +1,7 @@
 let panel = document.getElementById("panel");
 let minButton = document.getElementById("minbutton");
 let controls = document.getElementById("controls");
+let errBox = document.getElementById("error");
 
 // Make the DIV element draggable:
 dragElement(controls);
@@ -8,16 +9,19 @@ dragElement(controls);
 controls.onmousedown = preventRotation;
 controls.onmouseup = preventRotation;
 
-function scl(val){
-  document.getElementById("scaleValue").value = val;
-  limit=val;
+function scl(){
+  if(isnchanged){
+    n = document.getElementById("density").value;
+    vec = Create2DArray(n);
+    isnchanged = false;
+  }
   x=-limit/2,y=-limit/2,z=0;
   for(let i=0;i<n;i++){
     for(let j=0; j<n; j++){
       vec[i][j] = new Arrow(x,y,z);
-      y += limit/20;
+      y += limit/n;
     }
-    x += limit/20;
+    x += limit/n;
     y = -limit/2;
   }
 }
@@ -62,6 +66,7 @@ function dragElement(elmnt) {
   }
 }
 
+//function to minimize or maximize the panel
 function minimize(){
   if(isPanelMaximized){
     panel.style.display = "none";
@@ -73,6 +78,7 @@ function minimize(){
   }
 }
 
+// Prevents the rotation of the model while cotrol panel is clicked
 function preventRotation(){
   if(isControlPanelClicked){
     isControlPanelClicked = false;
@@ -80,4 +86,9 @@ function preventRotation(){
   else{
     isControlPanelClicked=true;
   }
+}
+
+function nchanged(){
+  isnchanged = true;
+  scl();
 }

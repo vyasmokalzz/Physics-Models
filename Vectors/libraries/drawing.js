@@ -10,7 +10,7 @@ function getFieldY() {
 }
 
 function getFieldZ() {
-    fy = document.getElementById("funcz").value;
+    fz = document.getElementById("funcz").value;
 }
 
 function drawAxes() {
@@ -76,24 +76,26 @@ class Arrow {
 
     display() {
         this.vecField();
-        if(isFinite(Fx) && isFinite(Fy)){
+        if (isFinite(Fx) && isFinite(Fy) && isFinite(Fz) && getMagnitude(Fx, Fy, Fz) != 0) {
             push();
             // rotateZ(-PI/2);
-            translate(this.x*(boxSize/limit), this.y*(boxSize/limit), this.z*(boxSize/limit));
+            translate(this.x * (boxSize / limit), this.y * (boxSize / limit), this.z * (boxSize / limit));
             rotateZ(-PI / 2 + atan2(Fy, Fx));
-    
+
             noStroke();
+
             ambientMaterial(245, 241, 5);
+
             smooth();
-    
+
             translate(0, -this.cylHeight / 2, 0);
             //cylinder(radius, height);
             cylinder(this.cylRadius, this.cylHeight);
-    
+
             translate(0, this.cylHeight, 0);
             //cone(radius, height);
             cone(this.coneRadius, this.coneHeight);
-    
+
             if (nodd == 0) {
                 console.log(this.x, this.y, atan(Fy / Fx));
                 nodd++;
@@ -124,24 +126,28 @@ class Arrow {
     }
 
     vecField() {
-        Fx = this.x * (this.y);
-        Fy = 0;
-        Fz = this.z * 0;
+        try {
+            Fx = Parser.parse(fx);
+            Fx.variables();
+            Fx = Fx.evaluate({ x: this.x, y: this.y, z: this.z });
 
-        // Fx = sin(this.x);
-        // Fy = sin(this.y);
-        // Fz = this.z * 0;
+            Fy = Parser.parse(fy);
+            Fy.variables();
+            Fy = Fy.evaluate({ x: this.x, y: this.y, z: this.z });
 
-        Fx = Parser.parse(fx);
-        Fx.variables();
-        Fx = Fx.evaluate({ x: this.x, y: this.y, z: this.z });
-
-        Fy = Parser.parse(fy);
-        Fy.variables();
-        Fy = Fy.evaluate({ x: this.x, y: this.y, z: this.z });
-
-        Fz = Parser.parse(fy);
-        Fz.variables();
-        Fz = Fz.evaluate({ x: this.x, y: this.y, z: this.z });
+            Fz = Parser.parse(fy);
+            Fz.variables();
+            Fz = Fz.evaluate({ x: this.x, y: this.y, z: this.z });
+            errBox.style.display = "none";
+        }
+        catch (err) {
+            Fx = Fy = Fz = 0;
+            errBox.style.display = "block";
+            errBox.innerHTML = "<p>Invalid Syntax!</p>"
+        }
     }
+}
+
+function getMagnitude(Ax, Ay, Az) {
+    return (sqrt(pow(Ax, 2) + pow(Ay, 2) + pow(Az, 2)));
 }
