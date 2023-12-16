@@ -12,7 +12,7 @@ let rotation, rotZ = 1, rotX = 1;
 let zoom = Math.PI / 10;
 //specifies sensitivity of the zoom on mouse scroll
 
-let zoomSensitivity = 32;
+let zoomSensitivity = 60;
 
 //specifies if the vector field should be 3d or not
 let is3d = false;
