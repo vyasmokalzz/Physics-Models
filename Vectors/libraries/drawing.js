@@ -3,14 +3,17 @@ let fx = "sin(x)", fy = "sin(y)", fz = "0";
 
 function getFieldX() {
     fx = document.getElementById("funcx").value;
+    calcMagnitude = true;
 }
 
 function getFieldY() {
     fy = document.getElementById("funcy").value;
+    calcMagnitude = true;
 }
 
 function getFieldZ() {
     fz = document.getElementById("funcz").value;
+    calcMagnitude = true;
 }
 
 function drawAxes() {
@@ -74,7 +77,7 @@ class Arrow {
         this.coneHeight = this.size / 2;
     }
 
-    display() {
+    display(i,j) {
         this.vecField();
         if (isFinite(Fx) && isFinite(Fy) && isFinite(Fz) && getMagnitude(Fx, Fy, Fz) != 0) {
             push();
@@ -84,7 +87,7 @@ class Arrow {
 
             noStroke();
 
-            ambientMaterial(245, 241, 5);
+            ambientMaterial(color[i][j]);
 
             smooth();
 
@@ -96,10 +99,6 @@ class Arrow {
             //cone(radius, height);
             cone(this.coneRadius, this.coneHeight);
 
-            if (nodd == 0) {
-                console.log(this.x, this.y, atan(Fy / Fx));
-                nodd++;
-            }
             pop();
         }
     }
@@ -150,4 +149,81 @@ class Arrow {
 
 function getMagnitude(Ax, Ay, Az) {
     return (sqrt(pow(Ax, 2) + pow(Ay, 2) + pow(Az, 2)));
+}
+
+function extremum(arr) {
+    max = min = 0;
+    for (let i = 0; i <= n; i++) {
+        for (let j = 0; j <= n; j++) {
+            if (arr[i][j] < min) {
+                min = arr[i][j];
+            }
+            else if (arr[i][j] > max) {
+                max = arr[i][j];
+            }
+        }
+        x += limit / n;
+        y = -limit / 2;
+    }
+    return [min, max];
+}
+
+function colorMapper(num, min, max) {
+    //map(variable, current start, current stop, target start , target stop)
+    let range = max - min;
+    let red, green, blue;
+    // Divide entire range in to four intervals to map color to them
+    // min | r1 | r2 | r3 | max
+    let r1 = min + (range / 4);
+    let r2 = r1 + (range / 4);
+    let r3 = r2 + (range / 4);
+
+    if (num >= min && num < r1) {
+        // Here Red=2 Green=2 blue=250 max
+        // Green goes on increasing from 2 to 250
+        red = 2;
+        green = 2;
+        blue = 250;
+        green = map(num, min, r1, 2, 250);
+        return [red, green, blue];
+    }
+    else if (num >= r1 && num < r2) {
+        // Here Red=2 Green=250 max blue=250 max
+        // Blue goes on decreasing from 250 to 2
+        red = 2;
+        green = 250;
+        blue = 250;
+        blue = map(num, r1, r2, 250, 2);
+        return [red, green, blue];
+    }
+    else if (num >= r2 && num < r3) {
+        // Here Red=2 Green=250 max blue=2
+        // Red goes on increasing from 2 to 250
+        red = 2;
+        green = 250;
+        blue = 2;
+        red = map(num, r2, r3, 2, 250);
+        return [red, green, blue];
+    }
+    else if (num >= r3 && num <= max) {
+        // Here Red=250 Green=250 max blue=2 max
+        // Green goes on decreasing from 250 to 2
+        red = 250;
+        green = 250;
+        blue = 2;
+        green = map(num, r3, max, 250, 2);
+        return [red, green, blue];
+    }
+}
+
+function colorSetter(vec) {
+    let bound = extremum(magnitudeArr);
+    // console.log(extremum(magnitudeArr));
+    let min = bound[0];
+    let max = bound[1];
+    for (let i = 0; i <= n; i++) {
+        for (let j = 0; j <= n; j++) {
+            color[i][j] = colorMapper(magnitudeArr[i][j], min, max);
+        }
+    }
 }

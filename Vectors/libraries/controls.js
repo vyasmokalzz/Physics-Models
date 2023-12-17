@@ -12,18 +12,29 @@ controls.onmouseup = preventRotation;
 function scl(){
   if(isnchanged){
     n = document.getElementById("density").value;
-    vec = Create2DArray(n);
+    vec = Create2DArray(n+1);
+    color = Create2DArray(n+1);
+    magnitudeArr = Create2DArray(n+1)
     isnchanged = false;
   }
   x=-limit/2,y=-limit/2,z=0;
-  for(let i=0;i<n;i++){
-    for(let j=0; j<n; j++){
+  for(let i=0;i<=n;i++){
+    for(let j=0; j<=n; j++){
+      if(abs(x)<1e-10){
+        x = 0;
+      }
+      if(abs(y)<1e-10){
+        y=0;
+      }
       vec[i][j] = new Arrow(x,y,z);
+      vec[i][j].vecField();
+      magnitudeArr[i][j] = getMagnitude(Fx,Fy,Fz);
       y += limit/n;
     }
     x += limit/n;
     y = -limit/2;
   }
+  colorSetter(vec);
 }
 
 function dragElement(elmnt) {

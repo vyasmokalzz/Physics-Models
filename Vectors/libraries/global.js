@@ -29,9 +29,14 @@ let boxSize = 100;
 //Components of the vector field
 let Fx,Fy,Fz;
 isFieldChanged = false;
+let calcMagnitude = true;
+let magnitudeArr;
 
 //specifies the limit upto which vector field should be shown
 let limit = 5;
 
 let n = 20;     //describes density of the vector field(number of arrows)
 let isnchanged=false;
+
+let max,min;
+let color;
