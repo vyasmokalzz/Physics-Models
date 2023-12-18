@@ -16,6 +16,7 @@ let zoomSensitivity = 60;
 
 //specifies if the vector field should be 3d or not
 let is3d = false;
+// let is3d = true;
 
 //variable to store the arrow objects
 let vec;
@@ -24,12 +25,11 @@ let isControlPanelClicked = false;
 let isPanelMaximized = true;
 
 let arrowSize = 4;
+let isArrowSizeChanged = false;
 let boxSize = 100;
 
 //Components of the vector field
 let Fx,Fy,Fz;
-isFieldChanged = false;
-let calcMagnitude = true;
 let magnitudeArr;
 
 //specifies the limit upto which vector field should be shown
@@ -39,4 +39,4 @@ let n = 20;     //describes density of the vector field(number of arrows)
 let isnchanged=false;
 
 let max,min;
-let color;
+let color;      //Stores the color to be assinged to a vector

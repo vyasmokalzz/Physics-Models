@@ -1,12 +1,15 @@
+let x,y,z;
+
 if (!is3d) {
   vec = Create2DArray(n+1);
   magnitudeArr = Create2DArray(n+1);
   color = Create2DArray(n+1);
 }
-else
-  ;
-let x=-limit/2,y=-limit/2,z=0;
-// let x = 0, y = 0, z = 0;
+else{
+  create3DArray(n+1);
+}
+
+x=-limit/2,y=-limit/2,z=0;
 
 function setup() {
   createCanvas(width, height, WEBGL);
@@ -42,11 +45,12 @@ function draw() {
     orbit();  // Gives control over orbit
   }
   else {
-    // console.log("T");
     restoreOrientation();
+    dimSelector();
     limit = document.getElementById("scale").value
     document.getElementById("scaleValue").value = limit;
     scl();
+    arrowSizeChange();
   }
 
   drawAxes();
@@ -72,6 +76,9 @@ function Create2DArray(rows) {
   return arr;
 }
 
-function create3DArray(rows, cols) {
-
+function create3DArray(len) {
+  let arr = []
+  for(i=0;i<n;i++){
+    arr[i] = Create2DArray(len);
+  }
 }

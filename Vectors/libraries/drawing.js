@@ -1,19 +1,19 @@
-let nodd = 0;
+let magnitude;
 let fx = "sin(x)", fy = "sin(y)", fz = "0";
 
 function getFieldX() {
     fx = document.getElementById("funcx").value;
-    calcMagnitude = true;
+    updateColor();
 }
 
 function getFieldY() {
     fy = document.getElementById("funcy").value;
-    calcMagnitude = true;
+    updateColor();
 }
 
 function getFieldZ() {
     fz = document.getElementById("funcz").value;
-    calcMagnitude = true;
+    updateColor();
 }
 
 function drawAxes() {
@@ -67,6 +67,7 @@ function drawAxes() {
 
 class Arrow {
     constructor(x, y, z) {
+        console.log("yy");
         this.x = x;
         this.y = y;
         this.z = z;
@@ -79,7 +80,8 @@ class Arrow {
 
     display(i,j) {
         this.vecField();
-        if (isFinite(Fx) && isFinite(Fy) && isFinite(Fz) && getMagnitude(Fx, Fy, Fz) != 0) {
+        magnitude = getMagnitude(Fx,Fy,Fz);
+        if (isFinite(magnitude) && magnitude!=0) {
             push();
             // rotateZ(-PI/2);
             translate(this.x * (boxSize / limit), this.y * (boxSize / limit), this.z * (boxSize / limit));
@@ -152,18 +154,18 @@ function getMagnitude(Ax, Ay, Az) {
 }
 
 function extremum(arr) {
-    max = min = 0;
+    max = min = arr[0][0];
     for (let i = 0; i <= n; i++) {
         for (let j = 0; j <= n; j++) {
-            if (arr[i][j] < min) {
-                min = arr[i][j];
-            }
-            else if (arr[i][j] > max) {
-                max = arr[i][j];
+            if(isFinite(arr[i][j])){
+                if (arr[i][j] < min) {
+                    min = arr[i][j];
+                }
+                else if (arr[i][j] > max) {
+                    max = arr[i][j];
+                }
             }
         }
-        x += limit / n;
-        y = -limit / 2;
     }
     return [min, max];
 }
@@ -177,8 +179,10 @@ function colorMapper(num, min, max) {
     let r1 = min + (range / 4);
     let r2 = r1 + (range / 4);
     let r3 = r2 + (range / 4);
-
-    if (num >= min && num < r1) {
+    if(range == 0){
+        return [2,250,2];
+    }
+    else if (num >= min && num < r1) {
         // Here Red=2 Green=2 blue=250 max
         // Green goes on increasing from 2 to 250
         red = 2;
@@ -226,4 +230,28 @@ function colorSetter(vec) {
             color[i][j] = colorMapper(magnitudeArr[i][j], min, max);
         }
     }
+}
+
+// When Field is change color is updated by this function
+function updateColor(){
+    x=-limit/2,y=-limit/2,z=0;
+    for (let i = 0; i <= n; i++) {
+        for (let j = 0; j <= n; j++) {
+          // These conditions sets vector fields on Axes and Origin due to limit/n problems
+          if(abs(x)<1e-5){
+            x = 0;
+          }
+          if(abs(y)<1e-5){
+            y=0;
+          }
+    
+          vec[i][j] = new Arrow(x, y, z);
+          vec[i][j].vecField();
+          magnitudeArr[i][j] = getMagnitude(Fx,Fy,Fz);
+          y += limit / n;
+        }
+        x += limit / n;
+        y = -limit / 2;
+      }
+      colorSetter(vec);
 }

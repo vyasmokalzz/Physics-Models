@@ -103,3 +103,11 @@ function nchanged(){
   isnchanged = true;
   scl();
 }
+
+function arrowSizeChange(){
+  arrowSize = document.getElementById("arrowSize").value;
+}
+
+function dimSelector(){
+  is3d = document.getElementById("3d").checked;
+}
