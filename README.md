@@ -6,6 +6,8 @@
   - [Overview](#Overview) 
   - [Motivation](#Motivation)
   - [Evolution from Processing to p5.js](#Evolution-from-Processing-to-p5.js)
+  - [Incorporating 3D Graphics with WEBGL](#Incorporating-3D-Graphics-with-WEBGL)
+  - [Project Highlights](#Project-Highlights)
 
 ## Introduction
 ### Overview
@@ -16,6 +18,12 @@ In physics, the power of visualization cannot be overstated. Traditional static 
 
 ### Evolution from Processing to p5.js
 Having previously created a simple cubic model using Processing, the project gradually evolved as I discovered the versatility of p5.js, a JavaScript library designed for drawing and animations. What made it even more appealing was its compatibility with any web browser, eliminating the need for specific software installations.
+
+### Incorporating 3D Graphics with WEBGL
+The incorporation of WEBGL in p5.js opened up exciting possibilities for creating intricate 3D crystal structures. The project has successfully transitioned from a static representation to an interactive and dynamic experience, allowing users to explore and understand complex physical phenomena effortlessly.
+
+### Project Highlights
+The project currently encompasses an array of interactive models, including Crystal Structures, Voids, Miller Indices, Fourier Series, Vector Functions, and Larmor Precession. The aim is not just to visualize these concepts but to provide an engaging platform for learning and exploration.
 
 ## Chapter 1
 ## Chapter 2
