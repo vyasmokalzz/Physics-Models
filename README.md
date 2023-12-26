@@ -1,6 +1,10 @@
 # Physics Models
 ## Interactive Visualizations for Understanding Complex Structures
 
+[Link to the Project](https://vyasmokalzz.github.io/Physics-Models/)
+> [!IMPORTANT]
+> Project is not supported by Mobile Browsers.
+
 ## Table of Contents
 - [Introduction](#Introduction)
   - [Overview](#Overview) 
@@ -8,6 +12,7 @@
   - [Evolution from Processing to p5.js](#Evolution-from-Processing-to-p5.js)
   - [Incorporating 3D Graphics with WEBGL](#Incorporating-3D-Graphics-with-WEBGL)
   - [Project Highlights](#Project-Highlights)
+-[What is WEBGL](#What-is-WEBGL)
 
 ## Introduction
 ### Overview
@@ -23,9 +28,11 @@ Having previously created a simple cubic model using Processing, the project gra
 The incorporation of WEBGL in p5.js opened up exciting possibilities for creating intricate 3D crystal structures. The project has successfully transitioned from a static representation to an interactive and dynamic experience, allowing users to explore and understand complex physical phenomena effortlessly.
 
 ### Project Highlights
-The project currently encompasses an array of interactive models, including Crystal Structures, Voids, Miller Indices, Fourier Series, Vector Functions, and Larmor Precession. The aim is not just to visualize these concepts but to provide an engaging platform for learning and exploration.
+The project currently encompasses an array of interactive models, including Crystal Structures, Voids, Miller Indices, Fourier Series, Vector Functions, and Larmor Precession. The aim is to visualize these concepts and provide an engaging platform for learning and exploration.
 
-## Chapter 1
+## What is WEBGL
+WebGL, or Web Graphics Library, is a JavaScript API (Application Programming Interface) that enables the rendering of 3D and 2D graphics within web browsers. It provides a bridge between the browser and the computer's GPU (Graphics Processing Unit), allowing for hardware-accelerated graphics rendering.
+
 ## Chapter 2
 ## Chapter 3
 ## Chapter 4
