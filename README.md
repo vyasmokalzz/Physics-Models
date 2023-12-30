@@ -13,10 +13,11 @@
   - [Incorporating 3D Graphics with WEBGL](#Incorporating-3D-Graphics-with-WEBGL)
   - [Project Highlights](#Project-Highlights)
 -[What is WEBGL](#What-is-WEBGL)
+-[References](#References)
 
 ## Introduction
 ### Overview
-This project is born out of a passion for combining the power of coding with the beauty of physics. Inspired by the enlightening approach of 3blue1brown and the capabilities of p5.js, this endeavor seeks to bridge the gap between static 3D images and a deep understanding of complex structures.
+This project is born out of a passion for combining the power of coding with the beauty of physics. Inspired by the enlightening approach of [3Blue1Brown](https://www.youtube.com/@3blue1brown) and the capabilities of p5.js, this endeavor seeks to bridge the gap between static 3D images and a deep understanding of complex structures.
 
 ### Motivation
 In physics, the power of visualization cannot be overstated. Traditional static images often fall short in conveying the intricacies of crystal structures, vector fields, 3D functions and other concepts. Recognizing this limitation during a solid state physics lecture, I embarked on a coding journey initially for the sheer joy of learning and exploring.
@@ -31,8 +32,11 @@ The incorporation of WEBGL in p5.js opened up exciting possibilities for creatin
 The project currently encompasses an array of interactive models, including Crystal Structures, Voids, Miller Indices, Fourier Series, Vector Functions, and Larmor Precession. The aim is to visualize these concepts and provide an engaging platform for learning and exploration.
 
 ## What is WEBGL
-WebGL, or Web Graphics Library, is a JavaScript API (Application Programming Interface) that enables the rendering of 3D and 2D graphics within web browsers. It provides a bridge between the browser and the computer's GPU (Graphics Processing Unit), allowing for hardware-accelerated graphics rendering.
+WebGL [[1](https://p5js.org/learn/getting-started-in-webgl-coords-and-transform.html)], or Web Graphics Library, is a JavaScript API (Application Programming Interface) that enables the rendering of 3D and 2D graphics within web browsers. It provides a bridge between the browser and the computer's GPU (Graphics Processing Unit), allowing for hardware-accelerated graphics rendering.
+
+Incorporating WEBGL in p5js adds a lot of handful features for 3d rendering and 
 
 ## Chapter 2
 ## Chapter 3
-## Chapter 4
+## References
+1. https://p5js.org/learn/getting-started-in-webgl-coords-and-transform.html
