@@ -52,8 +52,9 @@ function draw(){
 One of the most fundamental differences between working in 2D and working in 3D is the most obvious: there is one more dimension to work with. In addition to the horizontal and vertical position (x and y axes) of an element in our drawing, 3D adds depth, the z-axis.
 
 When drawing in 2D, the point (0,0) is located at the top left corner of the screen. In WebGL mode, the origin of the sketch (0,0,0) is located in the middle of the screen. By default, the x-axis goes left-to-right, y-axis goes up-to-down, and the z-axis goes from further-to-closer.
-
-![image](https://github.com/vyasmokalzz/Physics-Models/assets/102199618/8e518f44-cc10-4a11-a345-6eeafc6b24d5)
+<div align = "center">
+  <img src = "https://github.com/vyasmokalzz/Physics-Models/assets/102199618/8e518f44-cc10-4a11-a345-6eeafc6b24d5">
+</div>
 
 ## Chapter 2
 ## Chapter 3
