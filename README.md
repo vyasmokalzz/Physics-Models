@@ -12,7 +12,7 @@
   - [Evolution from Processing to p5.js](#Evolution-from-Processing-to-p5.js)
   - [Incorporating 3D Graphics with WEBGL](#Incorporating-3D-Graphics-with-WEBGL)
   - [Project Highlights](#Project-Highlights)
-- [What is p5js and WEBGL](#What-is-p5.js-and-WEBGL)
+- [What is p5js and WEBGL](#What-is-p5js-and-WEBGL)
 - [References](#References)
 
 ## Introduction
@@ -31,7 +31,7 @@ The incorporation of WEBGL in p5.js opened up exciting possibilities for creatin
 ### Project Highlights
 The project currently encompasses an array of interactive models, including Crystal Structures, Voids, Miller Indices, Fourier Series, Vector Functions, and Larmor Precession. The aim is to visualize these concepts and provide an engaging platform for learning and exploration.
 
-## What is p5.js and WEBGL
+## What is p5js and WEBGL
 p5.js [[2](https://p5js.org/)] is a free and open-source JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else!
 
 WebGL [[3](https://p5js.org/learn/getting-started-in-webgl-coords-and-transform.html)], or Web Graphics Library, is a JavaScript API (Application Programming Interface) that enables the rendering of 3D and 2D graphics within web browsers. It provides a bridge between the browser and the computer's GPU (Graphics Processing Unit), allowing for hardware-accelerated graphics rendering.
