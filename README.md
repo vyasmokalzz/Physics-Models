@@ -53,7 +53,7 @@ One of the most fundamental differences between working in 2D and working in 3D 
 
 When drawing in 2D, the point (0,0) is located at the top left corner of the screen. In WebGL mode, the origin of the sketch (0,0,0) is located in the middle of the screen. By default, the x-axis goes left-to-right, y-axis goes up-to-down, and the z-axis goes from further-to-closer.
 
-
+![image](https://github.com/vyasmokalzz/Physics-Models/assets/102199618/8e518f44-cc10-4a11-a345-6eeafc6b24d5)
 
 ## Chapter 2
 ## Chapter 3
