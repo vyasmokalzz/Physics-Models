@@ -1,19 +1,37 @@
-let magnitude;
-let fx = "sin(x)", fy = "sin(y)", fz = "0";
+let t1,t2,t3;
+// let fx = "sin(x+y)", fy = "sin(y-x)", fz = "0";
 
 function getFieldX() {
     fx = document.getElementById("funcx").value;
-    updateColor();
+    localStorage.setItem("fx", fx);
+    if (is3d) {
+        updateColor3d();
+    }
+    else {
+        updateColor();
+    }
 }
 
 function getFieldY() {
     fy = document.getElementById("funcy").value;
-    updateColor();
+    localStorage.setItem("fy", fy);
+    if (is3d) {
+        updateColor3d();
+    }
+    else {
+        updateColor();
+    }
 }
 
 function getFieldZ() {
     fz = document.getElementById("funcz").value;
-    updateColor();
+    localStorage.setItem("fz", fz);
+    if (is3d) {
+        updateColor3d();
+    }
+    else {
+        updateColor();
+    }
 }
 
 function drawAxes() {
@@ -67,7 +85,6 @@ function drawAxes() {
 
 class Arrow {
     constructor(x, y, z) {
-        console.log("yy");
         this.x = x;
         this.y = y;
         this.z = z;
@@ -76,20 +93,50 @@ class Arrow {
         this.cylHeight = (this.size) / 2;
         this.coneRadius = this.size / 8;
         this.coneHeight = this.size / 2;
+        this.vecField();
+        this.magnitude = getMagnitude(Fx, Fy, Fz);
+        this.azimuth = -PI / 2 + atan2(Fy, Fx);
+        this.zenith = atan(Fz / sqrt(pow(Fx, 2) + pow(Fy, 2)));
     }
 
-    display(i,j) {
+    display(i, j) {
         this.vecField();
-        magnitude = getMagnitude(Fx,Fy,Fz);
-        if (isFinite(magnitude) && magnitude!=0) {
+        if (isFinite(this.magnitude) && this.magnitude != 0) {
             push();
-            // rotateZ(-PI/2);
             translate(this.x * (boxSize / limit), this.y * (boxSize / limit), this.z * (boxSize / limit));
-            rotateZ(-PI / 2 + atan2(Fy, Fx));
+            rotateZ(this.azimuth);
 
             noStroke();
 
             ambientMaterial(color[i][j]);
+            
+            smooth();
+
+            translate(0, -this.cylHeight / 2, 0);
+            //cylinder(radius, height);
+            cylinder(this.cylRadius, this.cylHeight);
+
+            translate(0, this.cylHeight, 0);
+            //cone(radius, height);
+            cone(this.coneRadius, this.coneHeight);
+
+            pop();
+        }
+    }
+
+    display3d(i, j, k) {
+        this.vecField();
+        if (isFinite(this.magnitude) && this.magnitude != 0) {
+            push();
+            // rotateZ(-PI/2);
+            translate(this.x * (boxSize / limit), this.y * (boxSize / limit), this.z * (boxSize / limit));
+            rotateZ(this.azimuth);
+            rotateX(this.zenith);
+
+            noStroke();
+
+            ambientMaterial(color[i][j][k]);
+            // ambientMaterial(250,250,2);
 
             smooth();
 
@@ -105,27 +152,6 @@ class Arrow {
         }
     }
 
-    display2() {
-        push();
-        // rotateZ(PI/2);
-        translate(this.x, this.y, this.z);
-        // this.vecField();
-
-        //cylinder(radius, height);
-        stroke(218, 22, 224);
-        strokeWeight(6);
-        line(0, this.cylHeight / 2, 0, -this.coneHeight / 2);
-
-        noStroke();
-        ambientMaterial(218, 22, 224);
-        smooth();
-        translate(0, this.cylHeight, 0);
-        //cone(radius, height);
-        noStroke();
-        cone(this.coneRadius / 2, this.coneHeight);
-        pop();
-    }
-
     vecField() {
         try {
             Fx = Parser.parse(fx);
@@ -136,7 +162,7 @@ class Arrow {
             Fy.variables();
             Fy = Fy.evaluate({ x: this.x, y: this.y, z: this.z });
 
-            Fz = Parser.parse(fy);
+            Fz = Parser.parse(fz);
             Fz.variables();
             Fz = Fz.evaluate({ x: this.x, y: this.y, z: this.z });
             errBox.style.display = "none";
@@ -157,12 +183,31 @@ function extremum(arr) {
     max = min = arr[0][0];
     for (let i = 0; i <= n; i++) {
         for (let j = 0; j <= n; j++) {
-            if(isFinite(arr[i][j])){
+            if (isFinite(arr[i][j])) {
                 if (arr[i][j] < min) {
                     min = arr[i][j];
                 }
                 else if (arr[i][j] > max) {
                     max = arr[i][j];
+                }
+            }
+        }
+    }
+    return [min, max];
+}
+
+function extremum3d(arr) {
+    max = min = arr[0][0][0];
+    for (let i = 0; i <= n; i++) {
+        for (let j = 0; j <= n; j++) {
+            for (let k = 0; k <= n; k++) {
+                if (isFinite(arr[i][j][k])) {
+                    if (arr[i][j][k] < min) {
+                        min = arr[i][j][k];
+                    }
+                    else if (arr[i][j][k] > max) {
+                        max = arr[i][j][k];
+                    }
                 }
             }
         }
@@ -179,8 +224,8 @@ function colorMapper(num, min, max) {
     let r1 = min + (range / 4);
     let r2 = r1 + (range / 4);
     let r3 = r2 + (range / 4);
-    if(range == 0){
-        return [2,250,2];
+    if (range == 0) {
+        return [2, 250, 2];
     }
     else if (num >= min && num < r1) {
         // Here Red=2 Green=2 blue=250 max
@@ -220,7 +265,7 @@ function colorMapper(num, min, max) {
     }
 }
 
-function colorSetter(vec) {
+function colorSetter() {
     let bound = extremum(magnitudeArr);
     // console.log(extremum(magnitudeArr));
     let min = bound[0];
@@ -232,26 +277,71 @@ function colorSetter(vec) {
     }
 }
 
-// When Field is change color is updated by this function
-function updateColor(){
-    x=-limit/2,y=-limit/2,z=0;
+function colorSetter3d() {
+    let bound = extremum3d(magnitudeArr);
+    // console.log(extremum(magnitudeArr));
+    let min = bound[0];
+    let max = bound[1];
     for (let i = 0; i <= n; i++) {
         for (let j = 0; j <= n; j++) {
-          // These conditions sets vector fields on Axes and Origin due to limit/n problems
-          if(abs(x)<1e-5){
-            x = 0;
-          }
-          if(abs(y)<1e-5){
-            y=0;
-          }
-    
-          vec[i][j] = new Arrow(x, y, z);
-          vec[i][j].vecField();
-          magnitudeArr[i][j] = getMagnitude(Fx,Fy,Fz);
-          y += limit / n;
+            for (let k = 0; k <= n; k++) {
+                color[i][j][k] = colorMapper(magnitudeArr[i][j][k], min, max);
+            }
+        }
+    }
+}
+
+// When Field is change color is updated by this function
+function updateColor() {
+    x = -limit / 2, y = -limit / 2, z = 0;
+    for (let i = 0; i <= n; i++) {
+        for (let j = 0; j <= n; j++) {
+            // These conditions sets vector fields on Axes and Origin due to limit/n problems
+            if (abs(x) < 1e-5) {
+                x = 0;
+            }
+            if (abs(y) < 1e-5) {
+                y = 0;
+            }
+
+            vec[i][j] = new Arrow(x, y, z);
+            vec[i][j].vecField();
+            magnitudeArr[i][j] = getMagnitude(Fx, Fy, Fz);
+            y += limit / n;
         }
         x += limit / n;
         y = -limit / 2;
-      }
-      colorSetter(vec);
+    }
+    colorSetter();
+}
+
+function updateColor3d() {
+    x = -limit / 2, y = -limit / 2, z = -limit / 2;
+    for (let i = 0; i <= n; i++) {
+        for (let j = 0; j <= n; j++) {
+            for (let k = 0; k <= n; k++) {
+                // These conditions sets vector fields on Axes and Origin due to limit/n problems
+                if (abs(x) < 1e-5) {
+                    x = 0;
+                }
+                if (abs(y) < 1e-5) {
+                    y = 0;
+                }
+                if (abs(z) < 1e-5) {
+                    z = 0;
+                }
+
+                vec[i][j][k] = new Arrow(x, y, z);
+                vec[i][j][k].vecField();
+                magnitudeArr[i][j][k] = getMagnitude(Fx, Fy, Fz);
+                z += limit / n;
+            }
+            z = -limit / 2;
+            y += limit / n;
+        }
+        z = -limit / 2;
+        y = -limit / 2;
+        x += limit / n;
+    }
+    colorSetter3d(vec);
 }

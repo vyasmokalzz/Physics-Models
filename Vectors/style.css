@@ -1,10 +1,18 @@
 html, body {
+  background-color: black;
   margin: 0;
   padding: 0;
 }
 
 canvas {
+  position: absolute;
+  top: 0;
   display: block;
+  cursor:grab;
+}
+
+canvas:active{
+  cursor: grabbing;
 }
 
 .box{
@@ -55,4 +63,88 @@ canvas {
   display: block;
   color: red;
   font-weight: 100;
+}
+
+label{
+  display: flex;
+  justify-content: center;
+  margin: 1px;
+  padding:1px;
+}
+
+#axes{
+  display: flex;
+  justify-content: center;
+  margin: 2px;
+  padding: 2px;
+}
+
+#x{
+  background-color: red;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 4px;
+}
+#y{
+  background-color: green;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 4px;
+}
+#z{
+  background-color: blue;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 4px;
+}
+#x,#y,#z{
+  margin-right: 8px;
+}
+
+#scaleValue{
+  width: 8%;
+  border: none;
+  border-radius: 4px;
+}
+
+
+#funcx,#funcy,#funcz{
+  border: none;
+  border-radius: 4px;
+  margin: 1px;
+}
+
+.btn{
+  border-radius: 5px;
+  margin: 3px;
+  padding: 2px;
+}
+
+.btn:hover{
+  cursor: pointer;
+}
+
+/* Reloading Animations */
+#loader {
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid #444444;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite;
+}
+
+.center {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+@keyframes spin {
+  100% {
+      transform: rotate(360deg);
+  }
 }

@@ -12,15 +12,18 @@
   <script src="path/to/p5.sound.js"></script>
   <script src="libraries/p5.min.js"></script>
   <script src="libraries/p5.sound.min.js"></script>
+  <script src="libraries/global.js"></script>
   <script src="libraries/orbit.js"></script>
   <script src="libraries/drawing.js"></script>
   <script src="libraries/parser.js"></script>
-  <script src="libraries/global.js"></script>
 </head>
 
 <body>
-  <script src="sketch.js"></script>
-  
+  <canvas id="sketch">
+    <script src="sketch.js"></script>
+  </canvas>
+  <!-- <script src="test.js"></script> -->
+
   <!-- Controls -->
   <div id="controls">
     <!-- Include a header DIV, followed by "header" -->
@@ -28,48 +31,65 @@
       <button id="minbutton" onclick="minimize()"></button>
     </div>
     <div id="panel">
+      <!-- Axes Color -->
+      <div id="axes">
+        X: <div id="x"></div>
+        Y: <div id="y"></div>
+        Z: <div id="z"></div>
+      </div>
+
       <!-- X component input -->
       <label for="funcx">
-        X: <input type="text" name="funcx" id="funcx" class="inputbox" onfocusout="getFieldX()" value="sin(x)">
+        X: <input type="text" name="funcx" id="funcx" class="inputbox" onfocusout="getFieldX()" value="">
       </label>
-      
+
       <!-- Y component input -->
       <label for="funcy">
-        Y: <input type="text" name="funcy" id="funcy" class="inputbox" onfocusout="getFieldY()" value="sin(y)">
+        Y: <input type="text" name="funcy" id="funcy" class="inputbox" onfocusout="getFieldY()" value="">
       </label>
-      
+
       <!-- Z component input -->
       <label for="funcz">
-        Z: <input type="text" name="funcz" id="funcz" class="inputbox" onfocusout="getFieldZ()" value="0">
+        Z: <input type="text" name="funcz" id="funcz" class="inputbox" onfocusout="getFieldZ()" value="">
       </label>
-      
+
       <!-- 2D or 3D Plot Selector -->
       <label for="dim">
         2d: <input type="radio" name="dim" id="2d" checked>
         3d: <input type="radio" name="dim" id="3d">
       </label>
-      
+
       <label for="scale">
         Scale:
         <input type="text" name="scaleValue" id="scaleValue" value="5" readonly>
         <input type="range" name="scale" id="scale" min="1" max="100" value="5" step="1">
       </label>
-      
+
       <!-- density Selector -->
       <label for="density">
-        Density:<input type="range" name="density" id="density" value = "20" min="10" max="40" step="10" onchange="nchanged()">
+        Density:<input type="range" name="density" id="density" value="20" min="5" max="40" step="5"
+          onchange="nchanged()">
       </label>
 
       <!-- Arrow Size Selector -->
       <label for="arrowSize">
-        Arrow Size:<input type="range" name="arrowSize" id="arrowSize" value = "4" min="2" max="8" step="1" onchange="arrowSizeChange()">
+        Arrow Size:<input type="range" name="arrowSize" id="arrowSize" value="4" min="2" max="8" step="1"
+          onchange="arrowSizeChange()">
       </label>
 
       <div id="error">
         <!-- Error Message Here -->
       </div>
+
+      <div id="reset">
+        <button class="btn" onclick="reset()">Reset</button>
+      </div>
     </div>
   </div>
+  <div id="loader" class="center"></div>
   <script src="libraries/controls.js"></script>
+  <script src="libraries/resizeHandler.js"></script>
+  </script>
 </body>
+
 </html>
