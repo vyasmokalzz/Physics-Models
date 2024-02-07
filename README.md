@@ -13,6 +13,8 @@
   - [Incorporating 3D Graphics with WEBGL](#Incorporating-3D-Graphics-with-WEBGL)
   - [Project Highlights](#Project-Highlights)
 - [What is p5js and WEBGL](#What-is-p5js-and-WEBGL)
+- [Structure of Project](#Structure-of-Project)
+  - [Flowchart](#Flowchart)
 - [References](#References)
 
 ## Introduction
@@ -55,6 +57,24 @@ When drawing in 2D, the point (0,0) is located at the top left corner of the scr
 <div align = "center">
   <img src = "https://github.com/vyasmokalzz/Physics-Models/assets/102199618/8e518f44-cc10-4a11-a345-6eeafc6b24d5">
 </div>
+
+## Structure of Project
+### Flowchart
+```mermaid
+flowchart TD
+    A[index.html] -->|home contains hyperlinks to open models| B[home.html]
+    B-->D{links}
+    D-->E(Vectors)
+    D-->F(Solid State)
+    D-->G(Fourier Series)
+    D-->H(Lissajous Figures)
+    E-->C{IFrame}
+    F-->C
+    G-->C
+    H-->C
+    C-->B
+    A2[FullScreen]-->|Open IFrame in Fullscreen|C
+```
 
 ## Chapter 2
 ## Chapter 3
