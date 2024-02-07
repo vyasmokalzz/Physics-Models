@@ -4,6 +4,7 @@ let height = window.innerHeight;
 //radius of the circles
 let r1 = 150;
 let r2 = 150;
+let rate = 0.04;
 
 //centres of the circles
 let cx1 = 2 * r1;
@@ -16,7 +17,7 @@ let w1 = 2, w2 = 1;
 // w1 for y and w2 for x
 
 //phase differences
-let d1 = 0.45;
+let d1 = 0;
 let d2 = 0;
 
 //time
@@ -39,13 +40,13 @@ function draw() {
   circle(-cx1, cy1, r1);
   translate(-cx1, cy1);
   fill(250);
-  x1 = r1 * cos((w1 * t1) + (d1 * PI)+PI/2) / 2;
-  y1 = r1 * sin((w1 * t1) + (d1 * PI)+PI/2) / 2;
+  x1 = r1 * cos((w1 * t1) + (d1 * PI) - PI / 2) / 2;
+  y1 = r1 * sin((w1 * t1) + (d1 * PI) - PI / 2) / 2;
   circle(x1, y1, 10);
   line(0, 0, x1, y1);
   line(x1, y1, cx1 + x2, y1);
   pop();
-  
+
   push();
   translate(width / 2, 0);
   stroke(255);
@@ -57,7 +58,7 @@ function draw() {
   y2 = r2 * sin((w2 * t2) + (d2 * PI)) / 2;
   circle(x2, y2, 10);
   line(0, 0, x2, y2);
-  line(x2, y2, x2,-x2 -y2 - cy2);
+  line(x2, y2, x2, -cy2 + cy1 + y1);
   pop();
 
   push();
@@ -92,6 +93,17 @@ function draw() {
     y.pop();
   }
 
-  t1 = t1 - 0.05;
-  t2 = t2 - 0.05;
+  t1 = t1 - rate;
+  t2 = t2 - rate;
+}
+
+function refetch() {
+  w2 = document.getElementById("w1").value;
+  w1 = document.getElementById("w2").value;
+  d1 = document.getElementById("d2").value;
+  d2 = document.getElementById("d1").value;
+  rate = document.getElementById("range").value;
+  x = [];
+  y = [];
+  t1 = t2 = 0;
 }
