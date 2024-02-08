@@ -15,6 +15,7 @@
 - [What is p5js and WEBGL](#What-is-p5js-and-WEBGL)
 - [Structure of Project](#Structure-of-Project)
   - [Flowchart](#Flowchart)
+  - [Vector Fields](#Vectors-Fields)
 - [References](#References)
 
 ## Introduction
@@ -75,10 +76,36 @@ flowchart TD
     C-->B
     A2[FullScreen]-->|Open IFrame in Fullscreen|C
 ```
+### Vector Fields
+Vector fields are a cornerstone of Physics, representing crucial concepts that often pose visualization challenges, especially in comparison to scalar fields. To address this hurdle, our project integrates a sophisticated vector field plotter capable of rendering both 2D and 3D vector fields with clarity and precision. While existing platforms like Geogebra[[4](https://www.geogebra.org/m/u3xregNW)], Desmos[[5](https://www.desmos.com/calculator/ixxmfu8pbj)], and Matlab offer similar functionalities, they often fall short in effectively portraying vector field strengths, resulting in cluttered visualizations. Matlab does offer a strength-based color plotter, but it requires purchasing the software and navigating through coding complexities.
 
-## Chapter 2
-## Chapter 3
+In contrast, our project offers an intuitive solution by employing color mapping to represent vector field strengths, resulting in cleaner and more insightful visualizations. What sets our project apart is its accessibility - it can be accessed and utilized on any device equipped with a standard web browser. By providing a user-friendly interface and eliminating the need for additional software purchases or coding expertise.
+
+The project started with basic P5.js code incorporating WEBGL. Next task was to plot axes, WEBGL by default offer the left handed vector system, hence all plotted field are in left handed coordinate system. A crucial part of the project was to make an orbit function which can provide with third person camera to make the model interactive.
+
+<div>
+  Program just after the mentioned steps:
+  <img src="https://github.com/vyasmokalzz/Physics-Models/assets/102199618/0b23fbf4-0fc9-460b-a36c-90344790dda0" width="50%">
+</div>
+
+Next Task was to create an Arrow object which will plot an arrow at the desired location to specify the direction of the field at that point. P5.js has cone and cylinder functions which makes the job much easier.
+```javascript
+cone([radius], [height], [detailX], [detailY], [cap]);
+cylinder([radius], [height], [detailX], [detailY], [bottomCap], [topCap]);
+```
+Together with translate function we can easily make an arrow as shown above. The orientation of the arrow at point can be set by using rotateZ() and rotateX() whose offset can be determined by the field functions.
+<div>
+  <img src="https://github.com/vyasmokalzz/Physics-Models/assets/102199618/119deea1-9945-46f2-b269-5fddc932c91c" width="50%">
+</div>
+
+Next to plot a field many arrow objects would be needed, hence 2D and and 3D arrays are used, and on each location of the array an arrow object is stored the location, fields component wise magnitude and orientation angle are all stored in arrow object.
+<div>
+  <img src="https://github.com/vyasmokalzz/Physics-Models/assets/102199618/9c91b056-6233-42f7-a242-18e2764d1bfc" width="50%">
+</div>
+Now most important task was to add colors to the arrows. What makes it complicated is to assign color
 ## References
 1. https://www.youtube.com/@3blue1brown
 2. https://p5js.org/
 3. https://p5js.org/learn/getting-started-in-webgl-coords-and-transform.html
+4. https://www.geogebra.org/m/u3xregNW
+5. https://www.desmos.com/calculator/ixxmfu8pbj
