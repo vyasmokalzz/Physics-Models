@@ -103,6 +103,7 @@ Next to plot a field many arrow objects would be needed, hence 2D and and 3D arr
   <img src="https://github.com/vyasmokalzz/Physics-Models/assets/102199618/9c91b056-6233-42f7-a242-18e2764d1bfc" width="50%">
 </div>
 Now most important task was to add colors to the arrows. What makes it complicated is to assign color
+
 ## References
 1. https://www.youtube.com/@3blue1brown
 2. https://p5js.org/
