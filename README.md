@@ -83,8 +83,8 @@ In contrast, our project offers an intuitive solution by employing color mapping
 
 The project started with basic P5.js code incorporating WEBGL. Next task was to plot axes, WEBGL by default offer the left handed vector system, hence all plotted field are in left handed coordinate system. A crucial part of the project was to make an orbit function which can provide with third person camera to make the model interactive.
 
-<div>
-  Program just after the mentioned steps:
+Program just after the mentioned steps:
+<div align="center">
   <img src="https://github.com/vyasmokalzz/Physics-Models/assets/102199618/0b23fbf4-0fc9-460b-a36c-90344790dda0" width="50%">
 </div>
 
@@ -94,12 +94,12 @@ cone([radius], [height], [detailX], [detailY], [cap]);
 cylinder([radius], [height], [detailX], [detailY], [bottomCap], [topCap]);
 ```
 Together with translate function we can easily make an arrow as shown above. The orientation of the arrow at point can be set by using rotateZ() and rotateX() whose offset can be determined by the field functions.
-<div>
+<div align="center">
   <img src="https://github.com/vyasmokalzz/Physics-Models/assets/102199618/119deea1-9945-46f2-b269-5fddc932c91c" width="50%">
 </div>
 
 Next to plot a field many arrow objects would be needed, hence 2D and and 3D arrays are used, and on each location of the array an arrow object is stored the location, fields component wise magnitude and orientation angle are all stored in arrow object.
-<div>
+<div align="center">
   <img src="https://github.com/vyasmokalzz/Physics-Models/assets/102199618/9c91b056-6233-42f7-a242-18e2764d1bfc" width="50%">
 </div>
 Now most important task was to add colors to the arrows. What makes it complicated is to assign color
