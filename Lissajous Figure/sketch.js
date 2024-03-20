@@ -83,10 +83,10 @@ function draw() {
   pop();
 
   if (w1 * t1 <= -TWO_PI) {
-    t1 = 0;
+    t1 = (w1*t1-TWO_PI)/w1;
   }
   if (w2 * t2 <= -TWO_PI) {
-    t2 = 0;
+    t2 = (w2*t2-TWO_PI)/w2;
   }
   if (x.length > 200) {
     x.pop();
