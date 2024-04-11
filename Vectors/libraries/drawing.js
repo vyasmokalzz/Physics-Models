@@ -96,7 +96,7 @@ class Arrow {
         this.vecField();
         this.magnitude = getMagnitude(Fx, Fy, Fz);
         this.azimuth = -PI / 2 + atan2(Fy, Fx);
-        this.zenith = atan(Fz / sqrt(pow(Fx, 2) + pow(Fy, 2)));
+        this.zenith = atan(Fz / sqrt(pow(Fx, 2) + pow(Fy, 2) + pow(Fz,2)));
     }
 
     display(i, j) {
@@ -105,6 +105,7 @@ class Arrow {
             push();
             translate(this.x * (boxSize / limit), this.y * (boxSize / limit), this.z * (boxSize / limit));
             rotateZ(this.azimuth);
+            rotateX(this.zenith);
 
             noStroke();
 
